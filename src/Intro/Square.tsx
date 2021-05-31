@@ -11,14 +11,8 @@ const Square = () => {
   });
 
   return (
-    <svg
-      width={1525}
-      height={1525}
-      viewBox="0 0 1525 1525"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <g filter="url(#prefix__filter0_dd)">
+    <svg width={1525} height={1525} viewBox="0 0 1525 1525" fill="none">
+      <g filter="url(#shadow)" mask="url(#mask)">
         <rect
           x={150 + (SIZE - size) / 2}
           y={150 + (SIZE - size) / 2}
@@ -27,10 +21,15 @@ const Square = () => {
           rx={150}
           fill="#F2F2F2"
         />
+        <circle r={200} cx={1525 / 2} cy={1525 / 2} fill="black" />
       </g>
       <defs>
+        <mask id="mask">
+          <rect x={0} y={0} width={1525} height={1525} fill="white" />
+          <circle r={200} cx={1525 / 2} cy={1525 / 2} fill="black" />
+        </mask>
         <filter
-          id="prefix__filter0_dd"
+          id="shadow"
           x={0}
           y={0}
           width={1525}

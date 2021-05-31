@@ -11,10 +11,6 @@ export const RemotionVideo = () => {
       fps={30}
       width={3840}
       height={2160}
-      defaultProps={{
-        titleText: "Welcome to Remotion",
-        titleColor: "black",
-      }}
     />
   );
 };
