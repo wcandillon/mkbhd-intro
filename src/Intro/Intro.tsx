@@ -1,10 +1,9 @@
-import React from "react";
-import { View } from "react-native";
 import { Easing, interpolate, useCurrentFrame, useVideoConfig } from "remotion";
 
 import { Extrapolate } from "../components/Redash";
 
 import Square from "./Square";
+import Background from "./Background";
 
 const Intro = () => {
   const { width, height } = useVideoConfig();
@@ -16,7 +15,8 @@ const Intro = () => {
   return (
     <svg width={width} height={height}>
       <g mask="url(#mask)">
-        <rect width="3840" height="2160" fill="#F2F2F2" />
+        <rect width={width} height={height} fill="#F2F2F2" />
+        <Background />
         <Square />
       </g>
       <mask id="mask">

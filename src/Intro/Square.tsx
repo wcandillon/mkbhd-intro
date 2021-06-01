@@ -2,6 +2,8 @@ import { Easing, interpolate, useCurrentFrame, useVideoConfig } from "remotion";
 
 import { Extrapolate } from "../components/Redash";
 
+import Logo from "./Logo";
+
 const SIZE = 1225;
 
 const Square = () => {
@@ -11,18 +13,31 @@ const Square = () => {
     ...Extrapolate.CLAMP,
     easing: Easing.inOut(Easing.ease),
   });
+  const progress = interpolate(frame, [7, 7 + 30], [0, 1], {
+    ...Extrapolate.CLAMP,
+    easing: Easing.inOut(Easing.ease),
+  });
+  const scale = interpolate(frame, [7, 7 + 30, 7 + 31, 90 + 13], [0, 1, 1, 0], {
+    ...Extrapolate.CLAMP,
+    easing: Easing.inOut(Easing.ease),
+  });
+  const rotate = interpolate(frame, [30, 45], [0, 60], {
+    ...Extrapolate.CLAMP,
+    easing: Easing.inOut(Easing.ease),
+  });
   return (
     <>
-      <g filter="url(#shadow)">
-        <rect
-          x={width / 2 - size / 2}
-          y={height / 2 - size / 2}
-          width={size}
-          height={size}
-          rx="50"
-          fill="#F2F2F2"
-        />
-      </g>
+      <rect
+        filter="url(#shadow)"
+        x={width / 2 - size / 2}
+        y={height / 2 - size / 2}
+        width={size}
+        height={size}
+        rx="50"
+        fill="#F2F2F2"
+        opacity={0.8}
+      />
+      <Logo progress={progress} scale={scale} rotate={rotate} />
       <defs>
         <filter
           id="shadow"

@@ -5,6 +5,7 @@
 	"scripts": {
 		"start": "remotion preview src/index.tsx",
 		"build": "remotion render src/index.tsx Intro out --sequence",
+		"build2": "remotion render src/index.tsx Intro out.webm",
 		"upgrade": "remotion upgrade",
 		"server": "ts-node server.tsx",
 		"test": "eslint src --ext ts,tsx,js,jsx && tsc"
@@ -24,6 +25,7 @@
 		"react-dom": "^17.0.2",
 		"react-native-web": "^0.16.3",
 		"remotion": "^2.0.0",
+		"simplex-noise": "^2.4.0",
 		"ts-node": "^9.1.1",
 		"typescript": "^4.2.3"
 	},
