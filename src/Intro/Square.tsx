@@ -9,15 +9,20 @@ const SIZE = 1225;
 const Square = () => {
   const { width, height } = useVideoConfig();
   const frame = useCurrentFrame();
-  const size = interpolate(frame, [0, 30, 65, 90 + 13], [0, SIZE, SIZE, 0], {
+  const size = interpolate(frame, [0, 30, 65, 90], [0, SIZE, SIZE, 0], {
     ...Extrapolate.CLAMP,
     easing: Easing.inOut(Easing.ease),
   });
-  const progress = interpolate(frame, [7, 7 + 30], [0, 1], {
-    ...Extrapolate.CLAMP,
-    easing: Easing.inOut(Easing.ease),
-  });
-  const scale = interpolate(frame, [7, 7 + 30, 65, 90 + 13], [0, 1, 1, 0], {
+  const progress = interpolate(
+    frame,
+    [7, 7 + 30, 2 * 30 + 26, 90],
+    [0, 1, 1, 0],
+    {
+      ...Extrapolate.CLAMP,
+      easing: Easing.inOut(Easing.ease),
+    }
+  );
+  const scale = interpolate(frame, [7, 7 + 30, 65, 90], [0, 1, 1, 0], {
     ...Extrapolate.CLAMP,
     easing: Easing.inOut(Easing.ease),
   });

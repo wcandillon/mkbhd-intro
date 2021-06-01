@@ -1,4 +1,4 @@
-import { interpolate, useVideoConfig } from "remotion";
+import { interpolate, useCurrentFrame, useVideoConfig } from "remotion";
 
 import { COLOR_1, COLOR_2 } from "./config";
 
@@ -6,9 +6,18 @@ interface ArcProps {
   progress: number;
   scale: number;
   rotate: number;
+  glitch: number;
+  smoothGlitch?: boolean;
 }
 
-export const Arc = ({ scale, progress, rotate }: ArcProps) => {
+export const Arc = ({
+  scale,
+  progress,
+  rotate,
+  glitch,
+  smoothGlitch,
+}: ArcProps) => {
+  const frame = useCurrentFrame();
   const config = useVideoConfig();
   const cx = config.width / 2;
   const cy = config.height / 2;
@@ -36,6 +45,7 @@ export const Arc = ({ scale, progress, rotate }: ArcProps) => {
         strokeLinecap="round"
         strokeWidth={strokeWidth}
         transform={`rotate(${rotate}, ${cx}, ${cy})`}
+        opacity={glitch === frame ? 0 : 1}
       />
     </>
   );

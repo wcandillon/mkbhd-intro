@@ -1,11 +1,13 @@
-import { useVideoConfig } from "remotion";
+import { useCurrentFrame, useVideoConfig } from "remotion";
 
 import { COLOR_1, COLOR_2 } from "./config";
 
 export const Atom: React.FC<{
   scale: number;
-}> = ({ scale }) => {
+  glitch: number;
+}> = ({ scale, glitch }) => {
   const config = useVideoConfig();
+  const frame = useCurrentFrame();
   return (
     <>
       <defs>
@@ -19,6 +21,7 @@ export const Atom: React.FC<{
         cx={config.width / 2}
         cy={config.height / 2}
         fill="url(#gradient2)"
+        opacity={glitch === frame ? 0 : 1}
       />
     </>
   );

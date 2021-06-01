@@ -19,10 +19,36 @@ const Intro = () => {
         <Background />
         <Square />
       </g>
-      <mask id="mask">
-        <rect x={0} y={0} width={width} height={height} fill="white" />
-        <circle r={r} cx={width / 2} cy={height / 2} fill="black" />
-      </mask>
+      <defs>
+        <filter
+          id="blur"
+          x="0"
+          y="0"
+          width={width}
+          height={height}
+          filterUnits="userSpaceOnUse"
+          color-interpolation-filters="sRGB"
+        >
+          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feBlend
+            mode="normal"
+            in="SourceGraphic"
+            in2="BackgroundImageFix"
+            result="shape"
+          />
+          <feGaussianBlur stdDeviation="50" result="effect1_foregroundBlur" />
+        </filter>
+        <mask id="mask">
+          <rect x={0} y={0} width={width} height={height} fill="white" />
+          <circle
+            r={r}
+            cx={width / 2}
+            cy={height / 2}
+            fill="black"
+            filter="url(#blur)"
+          />
+        </mask>
+      </defs>
     </svg>
   );
 };
