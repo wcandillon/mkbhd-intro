@@ -1,5 +1,5 @@
 import { Config } from "remotion";
 
 Config.Rendering.setImageFormat("png");
-Config.Output.setPixelFormat("yuva420p");
-Config.Output.setCodec("vp9");
+Config.Output.setCodec("prores");
+Config.Output.setProResProfile("4444");

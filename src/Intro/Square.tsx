@@ -9,7 +9,11 @@ const SIZE = 1225;
 const Square = () => {
   const { width, height } = useVideoConfig();
   const frame = useCurrentFrame();
-  const size = interpolate(frame, [0, 30, 65, 90], [0, SIZE, SIZE, 0], {
+  const size = interpolate(frame, [0, 30, 65, 90 + 13], [0, SIZE, SIZE, 0], {
+    ...Extrapolate.CLAMP,
+    easing: Easing.inOut(Easing.ease),
+  });
+  const rx = interpolate(frame, [0, 30, 65, 90 + 13], [0, 125, 125, 0], {
     ...Extrapolate.CLAMP,
     easing: Easing.inOut(Easing.ease),
   });
@@ -22,7 +26,7 @@ const Square = () => {
       easing: Easing.inOut(Easing.ease),
     }
   );
-  const scale = interpolate(frame, [7, 7 + 30, 65, 90], [0, 1, 1, 0], {
+  const scale = interpolate(frame, [7, 7 + 30, 65, 90 + 13], [0, 1, 1, 0], {
     ...Extrapolate.CLAMP,
     easing: Easing.inOut(Easing.ease),
   });
@@ -38,7 +42,7 @@ const Square = () => {
         y={height / 2 - size / 2}
         width={size}
         height={size}
-        rx="150"
+        rx={rx}
         fill="#F2F2F2"
         opacity={0.8}
       />
@@ -85,7 +89,7 @@ const Square = () => {
           <feGaussianBlur stdDeviation="25" />
           <feColorMatrix
             type="matrix"
-            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.15 0"
           />
           <feBlend
             mode="normal"

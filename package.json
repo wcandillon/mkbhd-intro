@@ -4,8 +4,7 @@
 	"description": "My Remotion video",
 	"scripts": {
 		"start": "remotion preview src/index.tsx",
-		"build": "remotion render src/index.tsx Intro out --sequence",
-		"build2": "remotion render src/index.tsx Intro out.webm",
+		"build": "remotion render src/index.tsx Intro out.mov",
 		"upgrade": "remotion upgrade",
 		"server": "ts-node server.tsx",
 		"test": "eslint src --ext ts,tsx,js,jsx && tsc"
