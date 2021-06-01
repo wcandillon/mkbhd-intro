@@ -1,5 +1,7 @@
-import { interpolate, useCurrentFrame, useVideoConfig } from "remotion";
+import { Easing, interpolate, useCurrentFrame, useVideoConfig } from "remotion";
 import SimplexNoise from "simplex-noise";
+
+import { Extrapolate } from "../components/Redash";
 
 const xNoise = new SimplexNoise("x");
 const yNoise = new SimplexNoise("y");
@@ -16,6 +18,7 @@ const Background = () => {
   const ROWS = Math.round(height / SIZE);
   const COLS = Math.round(width / SIZE);
   const F = 0.02;
+  const reveal = interpolate(frame, [0, 30], [1, 0], Extrapolate.CLAMP);
   return (
     <>
       {new Array(COLS).fill(0).map((_i, i) =>
@@ -27,9 +30,10 @@ const Background = () => {
           const dx = xNoise.noise3D(px, py, frame * F) * SIZE;
           const dy = yNoise.noise3D(px, py, frame * F) * SIZE;
           const opacity = interpolate(
-            opacityNoise.noise3D(px, py, frame * F),
+            opacityNoise.noise3D(i, j, frame * F),
             [-1, 1],
-            [0.5, 1]
+            [0, 1],
+            { easing: Easing.bezier(0.85, 0, 0.15, 1) }
           );
           const color =
             Math.round(
@@ -52,6 +56,14 @@ const Background = () => {
           );
         })
       )}
+      <circle
+        cx={width / 2}
+        cy={height / 2}
+        strokeWidth={width * Math.SQRT2 * reveal}
+        stroke="#f2f2f2"
+        fill="transparent"
+        r={(width / 2) * Math.SQRT2}
+      />
     </>
   );
 };

@@ -1,13 +1,10 @@
 # Remotion video
 
 ```
-ffmpeg \
-    -f image2 \
-    -framerate 30 \
-    -i element-06%d.png \
-    -c:v prores_ks \
-    -profile:v 4444 out.mov
+-r 30 -f image2 -s 3840x2160 -start_number 0 -i element-%03d.png -c:v prores_ks -profile:v 4444 -crf 28 -pix_fmt yuva420p -auto-alt-ref 0 -b:v 1M -c:a aac -map 0:v -y /Users/wcandillon/tmp/mkbhd/out.mov
 ```
+
+
 
 
 <p align="center">

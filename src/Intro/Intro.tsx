@@ -8,7 +8,7 @@ import Background from "./Background";
 const Intro = () => {
   const { width, height } = useVideoConfig();
   const frame = useCurrentFrame();
-  const r = interpolate(frame, [3 * 30, 3 * 30 + 13], [0, width * Math.SQRT2], {
+  const r = interpolate(frame, [3 * 30, 3 * 30 + 13], [0, height], {
     ...Extrapolate.CLAMP,
     easing: Easing.inOut(Easing.ease),
   });

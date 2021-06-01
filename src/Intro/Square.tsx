@@ -11,7 +11,7 @@ const Square = () => {
   const frame = useCurrentFrame();
   const size = interpolate(frame, [0, 30, 60, 90 + 13], [0, SIZE, SIZE, 0], {
     ...Extrapolate.CLAMP,
-    easing: Easing.inOut(Easing.ease),
+    easing: Easing.bezier(0.22, 1, 0.36, 1),
   });
   const progress = interpolate(frame, [7, 7 + 30], [0, 1], {
     ...Extrapolate.CLAMP,
@@ -21,7 +21,7 @@ const Square = () => {
     ...Extrapolate.CLAMP,
     easing: Easing.inOut(Easing.ease),
   });
-  const rotate = interpolate(frame, [30, 45], [0, 60], {
+  const rotate = interpolate(frame, [30, 40], [0, 60], {
     ...Extrapolate.CLAMP,
     easing: Easing.inOut(Easing.ease),
   });
