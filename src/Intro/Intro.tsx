@@ -1,4 +1,5 @@
 import { Easing, interpolate, useCurrentFrame, useVideoConfig } from "remotion";
+import useDarkMode from "use-dark-mode";
 
 import { Extrapolate } from "../components/Redash";
 
@@ -6,6 +7,7 @@ import Square from "./Square";
 import Background from "./Background";
 
 const Intro = () => {
+  const { value: isDark } = useDarkMode();
   const { width, height } = useVideoConfig();
   const frame = useCurrentFrame();
   const r = interpolate(frame, [3 * 30, 3 * 30 + 13], [0, height], {
@@ -13,7 +15,18 @@ const Intro = () => {
     easing: Easing.inOut(Easing.ease),
   });
   return (
-    <svg width={width} height={height}>
+    <svg
+      width={width}
+      height={height}
+      style={
+        isDark
+          ? {
+              transition: "filter 1s ease-in-out",
+              filter: "invert(1) hue-rotate(180deg)",
+            }
+          : undefined
+      }
+    >
       <g mask="url(#mask)">
         <rect width={width} height={height} fill="#F2F2F2" />
         <Background />

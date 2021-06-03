@@ -7,16 +7,9 @@ interface ArcProps {
   scale: number;
   rotate: number;
   glitch: number;
-  smoothGlitch?: boolean;
 }
 
-export const Arc = ({
-  scale,
-  progress,
-  rotate,
-  glitch,
-  smoothGlitch,
-}: ArcProps) => {
+export const Arc = ({ scale, progress, rotate, glitch }: ArcProps) => {
   const frame = useCurrentFrame();
   const config = useVideoConfig();
   const cx = config.width / 2;
