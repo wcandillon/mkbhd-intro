@@ -1,3 +1,4 @@
+import { useVideoConfig } from "remotion";
 import useDarkMode from "use-dark-mode";
 
 import { Arc } from "./Arc";
@@ -10,8 +11,8 @@ interface LogoProps {
 }
 
 const Logo = ({ progress, scale, rotate }: LogoProps) => {
+  const config = useVideoConfig();
   const { value: isDark } = useDarkMode();
-
   return (
     <g
       style={
@@ -21,6 +22,7 @@ const Logo = ({ progress, scale, rotate }: LogoProps) => {
             }
           : undefined
       }
+      transform={`rotate(90, ${config.width / 2}, ${config.height / 2})`}
     >
       <Arc
         rotate={-rotate}
